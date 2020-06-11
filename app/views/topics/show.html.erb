@@ -1,2 +1,32 @@
-<h1>Topics#show</h1>
-<p>Find me in app/views/topics/show.html.erb</p>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="topic_show">
+			<h2><%= @topic.title %></h2>
+			<h3><%= @topic.contents %></h3>
+			<% @posts.each.with_index(1) do |post, idx| %>
+				<P><%= idx %>名前：
+					<% if post.user.handle_name.present? %>
+						<%= post.user.handle_name %>
+					<% else %>
+						名無しさん
+					<% end %>
+					<%= post.created_at %>
+					<span>
+						<% if post.user_id == current_user.id %>
+						[<%= link_to '削除', topic_post_path(@topic.id, post), method: :delete, data: { confirm: '書き込みを削除してもよろしいですか？' } %>]
+						<% end %>
+					</span>
+				</P>
+				<p><%= post.comment %></p>
+			<% end %>
+		</div>
+		<div class="post_new">
+			<%= form_for [@topic, @post] do |f| %>
+				<div class="row">
+					<%= f.text_area :comment, rows:'5', class: "col-xs-10 col-xs-offset-1" %>
+					<%= f.submit "書き込む" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
