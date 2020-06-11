@@ -1,4 +1,4 @@
-class ThreadsController < ApplicationController
+class TopicsController < ApplicationController
   def index
   end
 

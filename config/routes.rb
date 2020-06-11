@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'threads/index'
-  get 'threads/show'
-  get 'threads/edit'
+  get 'topics/index'
+  get 'topics/show'
+  get 'topics/edit'
   get 'users/show'
   devise_for :users
 end

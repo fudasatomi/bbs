@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class ThreadsControllerTest < ActionDispatch::IntegrationTest
+class TopicsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get threads_index_url
+    get topics_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get threads_show_url
+    get topics_show_url
     assert_response :success
   end
 
   test "should get edit" do
-    get threads_edit_url
+    get topics_edit_url
     assert_response :success
   end
 
