@@ -1,7 +1,4 @@
 class ThreadsController < ApplicationController
-  def create
-  end
-
   def index
   end
 
@@ -9,11 +6,5 @@ class ThreadsController < ApplicationController
   end
 
   def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 end
