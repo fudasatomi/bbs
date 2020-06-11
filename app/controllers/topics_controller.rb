@@ -1,4 +1,10 @@
 class TopicsController < ApplicationController
+  def new
+  end
+
+  def create
+  end
+
   def index
   end
 
@@ -7,4 +13,11 @@ class TopicsController < ApplicationController
 
   def edit
   end
+
+  def update
+  end
+
+  def destroy
+  end
+
 end

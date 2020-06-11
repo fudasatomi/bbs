@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  get 'topics/index'
-  get 'topics/show'
-  get 'topics/edit'
-  get 'users/show'
+
   devise_for :users
+
+  root 'topics#index'
+
+  resources :topics do
+  	resources :posts, only: [:create, :destroy]
+  end
+
+  resources :users, only: [:show ,:update]
+
 end
