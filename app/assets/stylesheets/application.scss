@@ -15,3 +15,68 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+　font-family: Arial;
+}
+body{
+	margin-top: 50px;
+}
+header .navbar-nav{
+	height: 60px;
+	.site_title{
+		font-size: 3em;
+		a{
+			color: white;}
+	}
+}
+.container{
+	padding-top: 50px;
+	margin-bottom: 30px;
+}
+.btn{
+	margin-top: 20px;
+}
+// 枠線・影の指定
+.main_frame{
+	border:0.5px solid black;
+	border-radius: 5px;
+	border-collapse: separate;
+  	border-spacing: 0;
+  	box-shadow: 2px 2px 3px #aaaaaa;
+}
+// 一覧画面
+.topic_new{
+	padding: 15px;
+	@extend .main_frame;
+	.btn{
+		margin-top: 20px;
+	}
+}
+.topic_index{
+	padding: 15px;
+	@extend .main_frame;
+	.topic_title{
+		border-bottom: 0.5px solid black;
+	}
+}
+
+// スレッド内
+.topic_show{
+	padding: 15px;
+	@extend .main_frame;
+	.post_div{
+		border-bottom: 0.5px solid black;
+		.post_comment{
+			font-size: 1.2em;
+		}
+	}
+}
+.post_new{
+	padding: 15px;
+	@extend .main_frame;
+}

@@ -1,36 +1,43 @@
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
+		<h2><%= @topic.title %></h2>
+		<h3><%= @topic.contents %></h3>
 		<div class="row topic_show">
-			<h2><%= @topic.title %></h2>
-			<h3><%= @topic.contents %></h3>
+			<% @posts.each.with_index(1) do |post, idx| %>
 			<div class="post_div">
-				<% @posts.each.with_index(1) do |post, idx| %>
-					<P><%= idx %>名前：
-						<% if post.user.handle_name.present? %>
-							<%= post.user.handle_name %>
-						<% else %>
-							名無しさん
+				<P><%= idx %>　名前：
+					<% if post.handle_name.present? %>
+						<%= post.handle_name %>
+					<% else %>
+						名無しさん
+					<% end %>
+					<%= post.created_at %>
+					<span>
+						<% if user_signed_in? %>
+						<% if post.user_id == current_user.id %>
+						[<%= link_to '削除', topic_post_path(@topic.id, post), method: :delete, data: { confirm: '書き込みを削除してもよろしいですか？' } %>]
 						<% end %>
-						<%= post.created_at %>
-						<span>
-							<% if post.user_id == current_user.id %>
-							[<%= link_to '削除', topic_post_path(@topic.id, post), method: :delete, data: { confirm: '書き込みを削除してもよろしいですか？' } %>]
-							<% end %>
-						</span>
-					</P>
-					<p><%= post.comment %></p>
-				<% end %>
+						<% end %>
+					</span>
+				</P>
+				<p class="post_comment"><%= post.comment %></p>
 			</div>
+			<% end %>
 		</div>
+		<% if user_signed_in? %>
 		<h3>書き込み</h3>
 		<div class=" row post_new">
 			<%= form_for [@topic, @post] do |f| %>
-				<div class="row">
-					<%= f.text_area :comment, rows:'5', class: "form-control" %>
+				<div class="col-xs-6">
+					<h4>ハンドルネーム</h4>
+					<%= f.text_field :handle_name, placeholder: '入力しなかった場合「名無しさん」になります', class: "form-control" %>
+					<h4>コメント</h4>
+					<%= f.text_area :comment, rows:'3', class: "form-control" %>
 					<%= f.submit "書き込む", class: "btn btn-primary col-xs-4 col-xs-offset-4" %>
 				</div>
 			<% end %>
 		</div>
+		<% end %>
 		<div class="back_btn">
 			<%= link_to 'スレッド一覧に戻る', topics_path, class: "btn btn-success" %>
 		</div>
